@@ -11,13 +11,12 @@ class RPiPinOut
   
   def initialize(id)
 
+    @id = id    
     unexport()
     
     File.write '/sys/class/gpio/export', id
     File.write "/sys/class/gpio/gpio#{id}/direction", 'out'
 
-    @id = id
-    
     at_exit {   unexport() }
     
   end
